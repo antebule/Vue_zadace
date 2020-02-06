@@ -1,40 +1,20 @@
 <template>
   <div id="app">
-    <input type="button" @click="loadJoke" value="Click for joke!">
-    <div v-if="responseData != null">
-      {{responseData.value}} <br>
-      Response time: {{time}} milliseconds <br>
-      <img :src="icon">
-    </div>
+    <Jokes />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Jokes from './components/Jokes'
 
 export default {
   name: 'app',
   components: {
-    
+    Jokes
   },
   data: function(){
     return {
-      responseData: null,
-      time: 0,
-      icon: ''
-    }
-  },
-  methods: {
-    loadJoke(){
-      const start = Date.now();
-      axios.get('https://api.chucknorris.io/jokes/random')
-        .then((response) => {
-          this.responseData = response.data;
-          this.icon = response.data.icon_url;
-          this.time = Date.now() - start;
-        }).catch(function (res) {
-          console.log(res);
-        })
+      
     }
   }
 }
